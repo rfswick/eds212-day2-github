@@ -1,0 +1,99 @@
+---
+title: "Day2b Exercises"
+author: "Rachel Swick"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#load packages ----
+library(tidyverse)
+
+# want to plot a function of f(x) = 3x^2 + 4 ----
+# define function ----
+# keyboard shortcut 'cntrl opt x' to build function quickly
+eq1 <- function(x) {
+  3 * x^2 + 4
+}
+
+# Create a data frame with range of values to evaluate our function across ----
+my_data_range <- data.frame(x = c(1, 100))
+
+# Plot our function as a continuous curve over our specified range of values in our dataframe ----
+ggplot(data = my_data_range, aes(x = x)) +
+  geom_function(fun = eq1)
+```
+
+
+```{r}
+# Want to plot a function of f(x) = 2.4 - 5x^3 + 21x^2
+# Define a new function ----
+
+eq2 <- function(x) {
+  2.4 - 5 * x^3 + 21 * x^2
+}
+
+a_data_range <- data.frame(x = c(-50, 50))
+
+ggplot(a_data_range, aes(x = x)) +
+  geom_function(fun = eq2)
+```
+
+
+```{r}
+# Create function C(t) ----
+ct <- function(t) {
+  t^3
+}
+
+# Find derivative of C(t) ----
+dc_dt <- D(expr = expression(t^3), name = "t")
+dc_dt
+
+# store the derivative as a function ----
+dc_dt_fun <- function(t) {
+  3 * t^2
+}
+
+# df of values ----
+my_data_range <- data.frame(t = c(-5, 5))
+
+# Plot function ----
+ggplot(data = my_data_range, aes(x = t)) +
+  geom_function(fun = ct, color = "red") +
+  geom_function(fun = dc_dt_fun, color = "purple")
+
+
+```
+
+
+```{r}
+# Create function for f(x,y,z) = 2xy - 3x^2z^3 ----
+# Create the expression ----
+f_xyz <- expression(2 * x * y - 3 * x^2 * z^3)
+
+# Partial with respect x ----
+df_dx <- D(expr = f_xyz, name = "z")
+df_dx
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
